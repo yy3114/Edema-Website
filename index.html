@@ -238,6 +238,203 @@
                 <p class="text-gray-600 p-6">
                     最常見的類型，由 **血管內外的壓力失衡** 引起。例如，心臟衰竭導致血管水壓升高，或肝臟疾病導致膠體滲透壓降低。這種水腫通常按壓後會出現凹陷（又稱「凹陷性水腫」）。
                 </p>
+                <img src="https://i.postimg.cc/Qt4Gd1mL/405.jpg" alt="血管水腫示意圖，展示了毛細血管內外液體的流動方向及壓力影響" class="w-full h-auto rounded-lg mt-4 shadow-lg">
+            </div>
+        </div>
+        
+        <!-- 淋巴水腫區塊 -->
+        <div class="card p-6 bg-white border-4 border-dashed border-gray-300">
+            <div class="text-center cursor-pointer" onclick="toggleGeneralInfo('lymphedema')">
+                <h3 class="text-2xl font-bold text-gray-800">淋巴水腫 (Lymphedema)</h3>
+                <p class="text-sm text-gray-500 mt-2">點擊以了解更多</p>
+            </div>
+            <div id="lymphedema-info" class="info-panel p-0">
+                <p class="text-gray-600 p-6">
+                    由於 **淋巴系統功能受損**，無法有效回收組織液和蛋白質所致。常見於癌症手術後，因淋巴結被移除而引起。這種水腫通常不會有凹陷，皮膚可能變得堅硬或增厚。
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleInfo(cardElement, causeId, animationClass) {
+        // 找到所有資訊面板
+        const allInfoPanels = document.querySelectorAll('.info-panel');
+        
+        // 找到當前卡片中的資訊面板
+        const infoPanel = cardElement.querySelector('.info-panel');
+        
+        // 遍歷所有面板，如果不是當前點擊的，就移除其活躍狀態和動畫類別
+        allInfoPanels.forEach(panel => {
+            if (panel.id !== causeId + '-info') {
+                panel.classList.remove('active');
+                panel.classList.remove(panel.dataset.animation);
+            }
+        });
+        
+        // 切換當前面板的活躍狀態和動畫類別
+        if (infoPanel.classList.contains('active')) {
+            infoPanel.classList.remove('active');
+            infoPanel.classList.remove(animationClass);
+        } else {
+            infoPanel.classList.add('active');
+            infoPanel.classList.add(animationClass);
+            infoPanel.dataset.animation = animationClass;
+        }
+    }
+
+    function toggleGeneralInfo(infoId) {
+        const infoPanels = document.querySelectorAll('.info-panel');
+        infoPanels.forEach(panel => {
+            if (panel.id === infoId + '-info') {
+                panel.classList.toggle('active');
+            } else if (panel.id === 'osmotic-info' || panel.id === 'vascular-info' || panel.id === 'lymphedema-info') {
+                panel.classList.remove('active');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+
+    <div class="mt-12 space-y-8">
+        <div class="card p-6 bg-white border-4 border-dashed border-gray-300">
+            <div class="text-center cursor-pointer" onclick="toggleGeneralInfo('osmotic')">
+                <h3 class="text-2xl font-bold text-gray-800">Starling 力量與水腫的關係</h3>
+                <p class="text-sm text-gray-500 mt-2">點擊以了解更多</p>
+            </div>
+            <div id="osmotic-info" class="info-panel p-0">
+                <div class="p-6">
+                    <p class="text-gray-600">
+                        **血管滲透壓 (Total Osmotic Pressure)**：這是血液中所有溶質（包括鈉、氯離子、葡萄糖、尿素以及蛋白質等）共同產生的總滲透壓。其正常範圍大約是 **275-295 mOsm/kg H₂O**。
+                    </p>
+                    <p class="text-gray-600 mt-4">
+                        **血漿膠體滲透壓 (Oncotic Pressure or Colloid Osmotic Pressure)**：這主要由血液中體積較大的蛋白質（如白蛋白）所產生，是維持血管內外水平衡的關鍵力量。這個值通常以毫米汞柱（mmHg）來表示，其正常範圍大約是 **25-30 mmHg**。
+                    </p>
+                    <p class="text-gray-600 mt-4">
+                        體液在血管和組織之間的交換，主要由四個壓力來決定，統稱為 **Starling 力量**。這些力量的平衡決定了液體是從血管**排出**到組織，還是從組織**吸回**到血管。
+                    </p>
+                    <img src="https://i.postimg.cc/Fs7ytYhq/Save-Clip-App-439407146-1094535401773372-6583070440664659503-n.jpg" alt="史塔林力量示意圖，展示了毛細血管內外液體的流動方向及壓力影響" class="w-full h-auto rounded-lg mt-4 shadow-lg">
+                    <ul class="list-disc list-inside mt-4 space-y-2 text-gray-600">
+                        <li>**毛細血管內水壓**：血管內液體對血管壁產生的壓力。當此壓力升高時（如心臟衰竭），會將液體「推出」血管，導致水腫。</li>
+                        <li>**血漿膠體滲透壓**：血管內蛋白質（主要是白蛋白）所產生的「吸力」，能將液體「吸回」血管。當此壓力降低時（如肝臟疾病），液體無法有效回流，也會導致水腫。</li>
+                        <li>**組織間液水壓**：組織間隙中的液體壓力。通常非常低，甚至為負壓，有助於將液體從血管中吸出。</li>
+                        <li>**組織間液膠體滲透壓**：組織間隙中的蛋白質濃度所產生的滲透壓。通常也極低。</li>
+                    </ul>
+                    <p class="mt-4">當這些力量失衡時，淨濾過壓力增加，導致過多的液體積聚在組織間隙，形成水腫。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主要原因卡片區塊 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <!-- 卡片 1: 腎臟疾病 -->
+        <div class="card card-bg-1" onclick="toggleInfo(this, 'renal', 'slide-in-top')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 4a8 8 0 0 0-8 8c0 4.41 3.59 8 8 8s8-3.59 8-8a8 8 0 0 0-8-8zm-1 2a1 1 0 0 1 2 0v2h2v2h-2v2h2v2h-2v2h-2v-2h-2v-2h2v-2h-2v-2h2V6z"/></svg>
+                </div>
+                <h3 class="text-xl">腎臟疾病</h3>
+                <p class="mt-2">腎功能不全導致水分和鈉滯留。</p>
+            </div>
+            <div id="renal-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">腎臟疾病 (Renal Disease)</h4>
+                <p class="text-gray-600">腎臟是調節體內水分和鈉平衡的主要器官。當腎臟功能受損時，如腎病症候群或慢性腎衰竭，會導致身體無法有效排出多餘的水分和鈉，使之積聚在組織間隙，從而引起全身性水腫，尤其在下肢表現明顯。</p>
+            </div>
+        </div>
+
+        <!-- 卡片 2: 心臟疾病 -->
+        <div class="card card-bg-2" onclick="toggleInfo(this, 'cardiac', 'fade-in')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <h3 class="text-xl">心臟疾病</h3>
+                <p class="mt-2">心臟泵血功能減弱導致血液回流受阻。</p>
+            </div>
+            <div id="cardiac-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">心臟疾病 (Cardiac Disease)</h4>
+                <p class="text-gray-600">心臟是循環系統的「泵浦」。當心臟功能不全（如心衰竭）時，右心室無法有效地將血液泵回肺部，導致血液在下肢靜脈中積聚，壓力升高。這種壓力會迫使液體從血管滲透到周圍組織，造成下肢水腫。</p>
+            </div>
+        </div>
+
+        <!-- 卡片 3: 肝臟疾病 -->
+        <div class="card card-bg-3" onclick="toggleInfo(this, 'liver', 'scale-up')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12c0-2.21-1.79-4-4-4s-4 1.79-4 4 1.79 4 4 4c.48 0 .93-.11 1.34-.3l2.85 2.85-1.41 1.41-1.42-1.42L12 18l-5.6-5.6L12 6.8l1.41 1.41-1.41 1.42-2.83-2.83-1.42 1.42L12 15.2l5.6 5.6-1.42 1.42-1.41-1.41L12 18l-1.41-1.42-2.83 2.83-1.42-1.42L12 15.2z"/></svg>
+                </div>
+                <h3 class="text-xl">肝臟疾病</h3>
+                <p class="mt-2">白蛋白合成減少，導致血漿膠體滲透壓降低。</p>
+            </div>
+            <div id="liver-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">肝臟疾病 (Liver Disease)</h4>
+                <p class="text-gray-600">肝臟負責合成多種重要的血漿蛋白，特別是白蛋白。白蛋白在維持血管內的滲透壓中扮演關鍵角色，防止液體從血管滲出。當肝功能受損（如肝硬化）時，白蛋白合成減少，血漿滲透壓降低，導致液體從血管流向組織間隙，引起水腫。</p>
+            </div>
+        </div>
+
+        <!-- 卡片 4: 靜脈或淋巴回流障礙 -->
+        <div class="card card-bg-4" onclick="toggleInfo(this, 'vascular', 'bounce-in')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM17 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <h3 class="text-xl">靜脈或淋巴回流障礙</h3>
+                <p class="mt-2">血液或淋巴液無法順利回流。</p>
+            </div>
+            <div id="vascular-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">靜脈或淋巴回流障礙 (Vascular or Lymphatic Obstruction)</h4>
+                <p class="text-gray-600">靜脈回流障礙（如深部靜脈栓塞）會導致下肢靜脈壓力升高，使液體外滲。</p>
+            </div>
+        </div>
+
+        <!-- 卡片 5: 藥物引起 -->
+        <div class="card card-bg-5" onclick="toggleInfo(this, 'drug', 'rotate-in')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M17 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM7 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <h3 class="text-xl">藥物引起</h3>
+                <p class="mt-2">某些藥物可能導致體內水分滯留。</p>
+            </div>
+            <div id="drug-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">藥物引起 (Drug-Induced)</h4>
+                <p class="text-gray-600">某些藥物，如鈣離子通道阻滯劑（常用於高血壓治療）、非類固醇抗炎藥物（NSAIDs）和某些類固醇，可能導致體內水分和鈉滯留，或增加毛細血管通透性，從而引起下肢水腫。</p>
+            </div>
+        </div>
+
+        <!-- 卡片 6: 特發性水腫 -->
+        <div class="card card-bg-6" onclick="toggleInfo(this, 'idiopathic', 'flip-in')">
+            <div class="card-content">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm0 1.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM12 16.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></svg>
+                </div>
+                <h3 class="text-xl">特發性水腫</h3>
+                <p class="mt-2">找不到明確原因的水腫。</p>
+            </div>
+            <div id="idiopathic-info" class="info-panel">
+                <h4 class="text-lg font-bold text-gray-700 mb-2">特發性水腫 (Idiopathic Edema)</h4>
+                <p class="text-gray-600">特發性水腫是指找不到明確潛在病因的水腫。這種情況通常發生在育齡女性身上，特點是水腫程度會隨一天時間波動，早晨較輕，下午或晚上加重。其確切機制尚不明確，但可能與內分泌或神經系統的調節異常有關。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增的說明區塊 -->
+    <div class="mt-12 space-y-8">
+        <!-- 血管水腫區塊 -->
+        <div class="card p-6 bg-white border-4 border-dashed border-gray-300">
+            <div class="text-center cursor-pointer" onclick="toggleGeneralInfo('vascular')">
+                <h3 class="text-2xl font-bold text-gray-800">血管水腫 (Vascular Edema)</h3>
+                <p class="text-sm text-gray-500 mt-2">點擊以了解更多</p>
+            </div>
+            <div id="vascular-info" class="info-panel p-0">
+                <p class="text-gray-600 p-6">
+                    最常見的類型，由 **血管內外的壓力失衡** 引起。例如，心臟衰竭導致血管水壓升高，或肝臟疾病導致膠體滲透壓降低。這種水腫通常按壓後會出現凹陷（又稱「凹陷性水腫」）。
+                </p>
             </div>
         </div>
         
